@@ -21,7 +21,7 @@ def main():
 
     # Configurar el grid de 3x4 en el resto de la página
     for i in range(3):
-        row = st.beta_container()
+        row = st.container()
 
         with row:
             col1, col2, col3, col4 = st.columns(4)
@@ -40,7 +40,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
