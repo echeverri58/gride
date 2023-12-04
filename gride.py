@@ -1,22 +1,11 @@
 import streamlit as st
 import plotly.express as px
+import numpy as np
 
-def generate_custom_bar_chart(bar_width=0.6):
-    # Datos personalizados para un gráfico de barras
-    data = {
-        'Categoría': ['A', 'B', 'C', 'D', 'E'],
-        'Valor': [15, 8, 12, 6, 10]
-    }
-
-    # Crear gráfico de barras con Plotly Express
-    fig = px.bar(data, x='Categoría', y='Valor', labels={'x': 'Categoría', 'y': 'Valor'}, title='Gráfico de Barras Personalizado', width=300, height=300)
-    
-    # Ajustar la anchura de las barras
-    fig.update_traces(marker=dict(line=dict(width=bar_width)))
-
-    # Ajustar el rango del eje x
-    fig.update_xaxes(range=[-0.5, len(data['Categoría']) - 0.5])
-
+def generate_random_bar_chart():
+    categories = [f"Categoria {i}" for i in range(1, 11)]
+    values = np.random.randint(1, 20, size=10)
+    fig = px.bar(x=categories, y=values, labels={'x': 'Categoría', 'y': 'Valor'}, title='Gráfico de Barras Aleatorio')
     return fig
 
 def main():
@@ -26,27 +15,35 @@ def main():
     # Configurar el sidebar horizontal en la parte superior
     st.markdown("# Sidebar Horizontal")
 
-    # Configurar el grid de 3x4 en el resto de la página
-    for i in range(3):
-        row = st.container()
+    # Lista de gráficos disponibles
+    available_charts = {
+        'Gráfico 1': generate_random_bar_chart(),
+        'Gráfico 2': generate_random_bar_chart(),
+        'Gráfico 3': generate_random_bar_chart(),
+        # Agrega más gráficos según sea necesario
+    }
 
-        with row:
-            col1, col2, col3, col4 = st.columns(4)
-            
+    # Selección de gráficos desde el sidebar
+    selected_charts = st.sidebar.multiselect('Seleccione los gráficos a comparar', list(available_charts.keys()))
+
+    # Configurar el grid de 2x1 para los gráficos seleccionados
+    row = st.container()
+    with row:
+        col1, col2 = st.columns(2)
+
+        # Mostrar el primer gráfico seleccionado
+        if selected_charts:
             with col1:
-                st.plotly_chart(generate_custom_bar_chart(), use_container_width=True)
+                st.plotly_chart(available_charts[selected_charts[0]], use_container_width=True)
 
+        # Mostrar el segundo gráfico seleccionado
+        if len(selected_charts) > 1:
             with col2:
-                st.plotly_chart(generate_custom_bar_chart(), use_container_width=True)
-
-            with col3:
-                st.plotly_chart(generate_custom_bar_chart(), use_container_width=True)
-
-            with col4:
-                st.plotly_chart(generate_custom_bar_chart(), use_container_width=True)
+                st.plotly_chart(available_charts[selected_charts[1]], use_container_width=True)
 
 if __name__ == "__main__":
     main()
+
 
 
 
