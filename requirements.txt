@@ -1,4 +1,5 @@
 streamlit==1.7.0
 plotly.express
+numpy
 
 
