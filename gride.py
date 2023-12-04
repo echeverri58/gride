@@ -9,6 +9,15 @@ def generate_random_bar_chart():
     return fig
 
 def main():
+    # Ajustar el ancho del sidebar
+    st.markdown("""
+        <style>
+            .sidebar .sidebar-content {
+                width: 200px;
+            }
+        </style>
+    """, unsafe_allow_html=True)
+
     # Configurar el sidebar vertical a la izquierda
     st.sidebar.title("Sidebar Vertical")
 
@@ -43,6 +52,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
