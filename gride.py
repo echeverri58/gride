@@ -1,4 +1,16 @@
 import streamlit as st
+import plotly.express as px
+import numpy as np
+
+def generate_random_plot():
+    # Generar datos aleatorios
+    x = np.arange(10)
+    y = np.random.randint(1, 10, size=10)
+
+    # Crear figura con Plotly Express
+    fig = px.line(x=x, y=y, labels={'x': 'X-axis', 'y': 'Y-axis'}, title='Gráfico Aleatorio')
+
+    return fig
 
 def main():
     # Configurar el sidebar vertical a la izquierda
@@ -8,66 +20,19 @@ def main():
     st.markdown("# Sidebar Horizontal")
 
     # Configurar el grid de 3x4 en el resto de la página
-    # Puedes personalizar esto según tus necesidades
-    grid_col1, grid_col2, grid_col3 = st.beta_columns(3)
+    for i in range(4):
+        row_col1, row_col2, row_col3 = st.beta_columns(3)
+        
+        with row_col1:
+            st.plotly_chart(generate_random_plot())
 
-    # Columna 1 del grid
-    with grid_col1:
-        st.write("Columna 1")
+        with row_col2:
+            st.plotly_chart(generate_random_plot())
 
-    # Columna 2 del grid
-    with grid_col2:
-        st.write("Columna 2")
-
-    # Columna 3 del grid
-    with grid_col3:
-        st.write("Columna 3")
-
-    # Segunda fila del grid
-    grid_col4, grid_col5, grid_col6 = st.beta_columns(3)
-
-    # Columna 4 del grid
-    with grid_col4:
-        st.write("Columna 4")
-
-    # Columna 5 del grid
-    with grid_col5:
-        st.write("Columna 5")
-
-    # Columna 6 del grid
-    with grid_col6:
-        st.write("Columna 6")
-
-    # Tercera fila del grid
-    grid_col7, grid_col8, grid_col9 = st.beta_columns(3)
-
-    # Columna 7 del grid
-    with grid_col7:
-        st.write("Columna 7")
-
-    # Columna 8 del grid
-    with grid_col8:
-        st.write("Columna 8")
-
-    # Columna 9 del grid
-    with grid_col9:
-        st.write("Columna 9")
-
-    # Cuarta fila del grid
-    grid_col10, grid_col11, grid_col12 = st.beta_columns(3)
-
-    # Columna 10 del grid
-    with grid_col10:
-        st.write("Columna 10")
-
-    # Columna 11 del grid
-    with grid_col11:
-        st.write("Columna 11")
-
-    # Columna 12 del grid
-    with grid_col12:
-        st.write("Columna 12")
+        with row_col3:
+            st.plotly_chart(generate_random_plot())
 
 if __name__ == "__main__":
     main()
+
 
