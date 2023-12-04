@@ -1,7 +1,7 @@
 import streamlit as st
 import plotly.express as px
 
-def generate_custom_bar_chart(bar_width=0.5):
+def generate_custom_bar_chart(bar_width=0.4):
     # Datos personalizados para un gráfico de barras
     data = {
         'Categoría': ['A', 'B', 'C', 'D', 'E'],
@@ -9,7 +9,7 @@ def generate_custom_bar_chart(bar_width=0.5):
     }
 
     # Crear gráfico de barras con Plotly Express
-    fig = px.bar(data, x='Categoría', y='Valor', labels={'x': 'Categoría', 'y': 'Valor'}, title='Gráfico de Barras Personalizado')
+    fig = px.bar(data, x='Categoría', y='Valor', labels={'x': 'Categoría', 'y': 'Valor'}, title='Gráfico de Barras Personalizado', width=400, height=400)
     
     # Ajustar la anchura de las barras
     fig.update_traces(marker=dict(line=dict(width=bar_width)))
@@ -47,5 +47,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
