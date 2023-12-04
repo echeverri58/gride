@@ -2,13 +2,13 @@ import streamlit as st
 import plotly.express as px
 import numpy as np
 
-def generate_random_plot():
-    # Generar datos aleatorios
-    x = np.arange(10)
-    y = np.random.randint(1, 10, size=10)
+def generate_random_bar_chart():
+    # Generar datos aleatorios para un gráfico de barras
+    categories = [f"Categoria {i}" for i in range(1, 11)]
+    values = np.random.randint(1, 20, size=10)
 
-    # Crear figura con Plotly Express
-    fig = px.line(x=x, y=y, labels={'x': 'X-axis', 'y': 'Y-axis'}, title='Gráfico Aleatorio', width=300, height=300)
+    # Crear gráfico de barras con Plotly Express
+    fig = px.bar(x=categories, y=values, labels={'x': 'Categoría', 'y': 'Valor'}, title='Gráfico de Barras Aleatorio')
 
     return fig
 
@@ -27,16 +27,16 @@ def main():
             col1, col2, col3, col4 = st.columns(4)
             
             with col1:
-                st.plotly_chart(generate_random_plot(), use_container_width=True)
+                st.plotly_chart(generate_random_bar_chart(), use_container_width=True)
 
             with col2:
-                st.plotly_chart(generate_random_plot(), use_container_width=True)
+                st.plotly_chart(generate_random_bar_chart(), use_container_width=True)
 
             with col3:
-                st.plotly_chart(generate_random_plot(), use_container_width=True)
+                st.plotly_chart(generate_random_bar_chart(), use_container_width=True)
 
             with col4:
-                st.plotly_chart(generate_random_plot(), use_container_width=True)
+                st.plotly_chart(generate_random_bar_chart(), use_container_width=True)
 
 if __name__ == "__main__":
     main()
