@@ -21,18 +21,19 @@ def main():
 
     # Configurar el grid de 3x4 en el resto de la página
     for i in range(4):
-        row_col1, row_col2, row_col3 = st.beta_columns(3)
+        row_col1, row_col2, row_col3 = st.columns(3)
         
         with row_col1:
-            st.plotly_chart(generate_random_plot())
+            st.plotly_chart(generate_random_plot(), use_container_width=True)
 
         with row_col2:
-            st.plotly_chart(generate_random_plot())
+            st.plotly_chart(generate_random_plot(), use_container_width=True)
 
         with row_col3:
-            st.plotly_chart(generate_random_plot())
+            st.plotly_chart(generate_random_plot(), use_container_width=True)
 
 if __name__ == "__main__":
     main()
+
 
 
