@@ -14,6 +14,9 @@ def generate_custom_bar_chart(bar_width=0.5):
     # Ajustar la anchura de las barras
     fig.update_traces(marker=dict(line=dict(width=bar_width)))
 
+    # Ajustar el rango del eje x
+    fig.update_xaxes(range=[-0.5, len(data['Categoría']) - 0.5])
+
     return fig
 
 def main():
